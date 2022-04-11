@@ -5,7 +5,7 @@ using namespace std;
 
 namespace zich
 {
-    Matrix::Matrix(const vector<double> &mat, const int row, const int col)
+    Matrix::Matrix(const vector<double> &mat, const int row, const int col) // constructor
     {
         if (row <= 0 || col <= 0)
         {
@@ -23,7 +23,7 @@ namespace zich
     }
 
     // Operator +
-    Matrix Matrix::operator+(Matrix const &other) const
+    Matrix Matrix::operator+(Matrix const &other) const // operator + -> matrix + matrix
     {
         if (other.row != this->row || other.col != this->col)
         {
@@ -39,7 +39,7 @@ namespace zich
         }
         return Matrix(newMat, this->row, this->col);
     }
-    Matrix &Matrix::operator+=(Matrix const &other)
+    Matrix &Matrix::operator+=(Matrix const &other) // operator += matrix += matrix
     {
         if (other.row != this->row || other.col != this->col)
         {
@@ -54,7 +54,7 @@ namespace zich
         }
         return *this;
     }
-    Matrix &Matrix::operator++()
+    Matrix &Matrix::operator++() // operator ++ -> ++matrix
     {
         for (size_t i = 0; i < this->row; i++)
         {
@@ -65,7 +65,7 @@ namespace zich
         }
         return *this;
     }
-    Matrix Matrix::operator++(const int num)
+    Matrix Matrix::operator++(const int num) // operator ++ -> matrix++
     {
         Matrix temp = *this;
         for (size_t i = 0; i < this->row; i++)
@@ -79,7 +79,7 @@ namespace zich
     }
 
     // Operator -
-    Matrix Matrix::operator-(Matrix const &other) const
+    Matrix Matrix::operator-(Matrix const &other) const // operator - -> matrix - matrix
     {
         if (other.row != this->row || other.col != this->col)
         {
@@ -95,7 +95,7 @@ namespace zich
         }
         return Matrix(newMat, this->row, this->col);
     }
-    Matrix &Matrix::operator-=(Matrix const &other)
+    Matrix &Matrix::operator-=(Matrix const &other) // operator -= -> matrix -= matrix
     {
         if (other.row != this->row || other.col != this->col)
         {
@@ -110,7 +110,7 @@ namespace zich
         }
         return *this;
     }
-    Matrix &Matrix::operator--()
+    Matrix &Matrix::operator--() // operator -- -> --matrix
     {
         for (size_t i = 0; i < this->row; i++)
         {
@@ -121,7 +121,7 @@ namespace zich
         }
         return *this;
     }
-    Matrix Matrix::operator--(const int num)
+    Matrix Matrix::operator--(const int num) // operator -- -> matrix--
     {
         Matrix temp = *this;
         for (size_t i = 0; i < this->row; i++)
@@ -135,7 +135,7 @@ namespace zich
     }
 
     // Operator *
-    Matrix Matrix::operator*(const Matrix &other) const
+    Matrix Matrix::operator*(const Matrix &other) const // operator * -> matrix * matrix
     {
         if (this->col != other.row)
         {
@@ -156,7 +156,7 @@ namespace zich
         }
         return Matrix(newMat, this->row, other.col);
     }
-    Matrix &Matrix::operator*=(const Matrix &other)
+    Matrix &Matrix::operator*=(const Matrix &other) // operator *= -> matrix *= matrix
     {
         if (this->col != other.row)
         {
@@ -179,7 +179,7 @@ namespace zich
         return *this;
     }
 
-    Matrix Matrix::operator*(const double num) const
+    Matrix Matrix::operator*(const double num) const // operator * -> matrix * scalar
     {
         vector<double> newMat;
         for (size_t i = 0; i < this->row; i++)
@@ -191,7 +191,7 @@ namespace zich
         }
         return Matrix(newMat, this->row, this->col);
     }
-    Matrix &Matrix::operator*=(const double num)
+    Matrix &Matrix::operator*=(const double num) // operator *= -> matrix *= scalar
     {
         vector<double> newMat;
         for (size_t i = 0; i < this->row; i++)
@@ -204,7 +204,7 @@ namespace zich
         return *this;
     }
 
-    int Matrix::sum() const
+    int Matrix::sum() const // function to sum all of the matrix
     {
         int sum = 0;
         for (size_t i = 0; i < this->row * this->col; i++)
@@ -216,7 +216,7 @@ namespace zich
     }
 
     // statements
-    bool Matrix::operator<(const Matrix &other) const
+    bool Matrix::operator<(const Matrix &other) const // operator < -> matrix < matrix
     {
         if (this->row != other.row || this->col != other.col)
         {
@@ -225,7 +225,7 @@ namespace zich
 
         return this->sum() < other.sum();
     }
-    bool Matrix::operator<=(const Matrix &other) const
+    bool Matrix::operator<=(const Matrix &other) const // operator <= -> matrix <= matrix
     {
         if (this->row != other.row || this->col != other.col)
         {
@@ -234,7 +234,7 @@ namespace zich
 
         return this->sum() <= other.sum();
     }
-    bool Matrix::operator>(const Matrix &other) const
+    bool Matrix::operator>(const Matrix &other) const // operator > -> matrix > matrix
     {
         if (this->row != other.row || this->col != other.col)
         {
@@ -243,7 +243,7 @@ namespace zich
 
         return this->sum() > other.sum();
     }
-    bool Matrix::operator>=(const Matrix &other) const
+    bool Matrix::operator>=(const Matrix &other) const // operator >= -> matrix >= matrix
     {
         if (this->row != other.row || this->col != other.col)
         {
@@ -252,7 +252,7 @@ namespace zich
 
         return this->sum() >= other.sum();
     }
-    bool Matrix::operator==(const Matrix &other) const
+    bool Matrix::operator==(const Matrix &other) const // operator == -> matrix == matrix
     {
         if (this->row != other.row || this->col != other.col)
         {
@@ -268,7 +268,7 @@ namespace zich
         }
         return true;
     }
-    bool Matrix::operator!=(const Matrix &other) const
+    bool Matrix::operator!=(const Matrix &other) const // operator != -> matrix != matrix
     {
         if (this->row != other.row || this->col != other.col)
         {
@@ -279,7 +279,7 @@ namespace zich
     }
 
     // cout <<
-    ostream &operator<<(ostream &os, const Matrix &mat)
+    ostream &operator<<(ostream &os, const Matrix &mat) // operator << as a friend , ostream << matrix
     {
         for (size_t i = 0; i < mat.row; i++)
         {
@@ -307,7 +307,7 @@ namespace zich
         return os;
     }
 
-    istream &operator>>(istream &is, Matrix &mat)
+    istream &operator>>(istream &is, Matrix &mat) // operator >> as a friend , istream >> matrix
     {
         int row = 0;
         int col = 0;
@@ -391,15 +391,15 @@ namespace zich
     }
 
     // * and -
-    Matrix operator*(const double num, const Matrix &ourMat)
+    Matrix operator*(const double num, const Matrix &ourMat) // friend * operator -> *matrix
     {
         return ourMat * num;
     }
-    Matrix operator-(const Matrix &ourMat)
+    Matrix operator-(const Matrix &ourMat) //friend - operator -> -matrix
     {
         return ourMat * (-1);
     }
-    Matrix operator+(const Matrix &ourMat)
+    Matrix operator+(const Matrix &ourMat) // friend + operator -> +matrix
     {
         return ourMat;
     }
